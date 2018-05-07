@@ -10,7 +10,7 @@ public :
 //Constructors 
 
 Environnement();
-Environnement(float Ainit,int T,float D,float P_mut);
+Environnement(double Ainit,int T,float D,float P_mut);
 
 //Destructors
 
@@ -24,6 +24,11 @@ Case get_case(int i, int j);
 
 void reset();
 void filling();
+void diffusion();
+void death();
+void competition();
+void metabolism();
+int run(int t);
 
 //Attributes
 protected :
@@ -35,8 +40,8 @@ int T_ ;
 float D_;
 float P_mut_;
 Case** grille;
-int cA;
-int cB;
+int nA;
+int nB;
 };
 
 #endif 
