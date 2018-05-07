@@ -21,7 +21,7 @@ class Bacterie {
 		inline double B() const;
 		inline double C() const;
 		
-		virtual double metabolisme() = 0;
+		virtual double metabolisme(map<char,double> ext) = 0;
 		
 		virtual void set_fitness() = 0;
 		
