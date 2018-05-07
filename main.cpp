@@ -1,4 +1,6 @@
 #include <iostream>
+#include "Case.h"
+
 using namespace std;
 
 int main(){
@@ -6,7 +8,13 @@ int main(){
     cout<< "Hello World !" <<endl;
     cout<< " " <<endl;
 
+	Environnement environnement1 ();
+	Environnement environnement2 (25,7500,0.1,0);
+	
+	environnement.diffusion();
+	
     return 0;
+   
     
 }
 
