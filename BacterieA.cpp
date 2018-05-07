@@ -1,20 +1,24 @@
 #include <cstdlib>
 #include "BacterieA.h"
+#include "BacterieB.h"
+
 
 BacterieA::BacterieA() = default;
-BacterieA::BacterieA(double a, double b, double c) = default;
+BacterieA::BacterieA(double a, double b, double c) {
+	set_fitness();
+}
 
 BacterieA::~BacterieA() = default;
 
 
-double metabolisme(double A_ext) {
-	phenotype_['A']=phenotype_['A']+A_ext*R_AA-phenotype['A']*R_AB;
-	phenotype_['B']=phenotype_['B']+phenotype['A']*R_AB;
+double BacterieA::metabolisme(map<char,double> ext) {
+	phenotype_['A']=phenotype_['A']+ext['A']*R_AA-phenotype_['A']*R_AB;
+	phenotype_['B']=phenotype_['B']+phenotype_['A']*R_AB;
 	set_fitness();
-	return A_ext-A_ext*R-AA;
+	return ext['A']-ext['A']*R_AA;
 }
 
-void set_fitness() {
+void BacterieA::set_fitness() {
 	fitness_=phenotype_['B'];
 	if (fitness_<W_min) fitness_=0;
 }
@@ -22,8 +26,9 @@ void set_fitness() {
 
 Bacterie* BacterieA::reproduire() {
 	double alea=(double) rand()/RAND_MAX;
-	if (alea<=P_mut) Bacterie* nv = new BacterieB(phenotype_['A']/2, phenotype_['B']/2, phenotype_['C']/2);
-	else Bacterie* nv = new BacterieA(phenotype_['A']/2, phenotype_['B']/2, phenotype_['C']/2);
+	Bacterie* nv;
+	if (alea<=P_mut) nv = new BacterieB(phenotype_['A']/2, phenotype_['B']/2, phenotype_['C']/2);
+	else nv = new BacterieA(phenotype_['A']/2, phenotype_['B']/2, phenotype_['C']/2);
 	
 	phenotype_['A']=phenotype_['A']/2;
 	phenotype_['B']=phenotype_['B']/2;

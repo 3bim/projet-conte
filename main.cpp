@@ -1,4 +1,8 @@
 #include <iostream>
+#include "Bacterie.h"
+#include "BacterieA.h"
+#include "BacterieB.h"
+
 using namespace std;
 
 int main(){
