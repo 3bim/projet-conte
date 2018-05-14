@@ -21,7 +21,7 @@ Case::Case(map<char,double> metabolites, char c){
 	if (c=='A'){
 		bacterie_=new BacterieA();
 	}
-	if (c=='B'){
+	else if (c=='B'){
 		bacterie_=new BacterieB();
 	}
 	metabolites_['A']=metabolites['A'];
@@ -33,9 +33,10 @@ Case::Case(map<char,double> metabolites, char c){
 //Destructeur :
 
 Case::~Case(){
-	if(bacterie_!=nullptr){
-		delete bacterie_;
-	}
+	//if(bacterie_){
+		//delete bacterie_;
+		//bacterie_=nullptr;
+	//}
 }
 
 
@@ -83,7 +84,7 @@ void Case::metabolisme(){
 //Rajoute les valeurs de phénotype à métabolismes quand la bactérie meurt 
 //Détruit la bactérie
 void Case::mort(){
-	phenotype=bacterie_->phenotype();
+	map<char,double> phenotype=bacterie_->phenotype();
 	metabolites_['A']=metabolites_['A']+phenotype['A'];
 	metabolites_['B']=metabolites_['B']+phenotype['B'];
 	metabolites_['C']=metabolites_['C']+phenotype['C'];
