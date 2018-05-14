@@ -31,12 +31,10 @@ Case::Case(map<char,double> metabolites, char c){
 
 
 //Destructeur :
-
 Case::~Case(){
-	//if(bacterie_){
-		//delete bacterie_;
-		//bacterie_=nullptr;
-	//}
+	if(bacterie_){
+		delete bacterie_;
+	}
 }
 
 
