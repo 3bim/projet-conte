@@ -55,6 +55,9 @@ int main(){
 		  }
       monde.diffusion();
       vec = monde.death();
+      for (int j = 0; vec.size(); j++){
+        cout << "on a" << vec[j][0] << vec[j][1] << endl;
+      }
       monde.division(vec);
       monde.metabolism();
     }

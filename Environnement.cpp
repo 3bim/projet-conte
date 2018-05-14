@@ -20,7 +20,7 @@ Environnement::Environnement(){
 	T_ = 700;
 	D_ = 0.1;
 	P_mut_ = 0;
-  P_death_ = 0.02;
+  P_death_ = 0.5;
 	grille  = new Case* [H_];
 	for(int i=0; i<H_;i++){
 		grille[i] = new Case[W_];
@@ -172,15 +172,20 @@ void Environnement::diffusion(){
 
 vector<vector<int>> Environnement::death(){
   vector<int> vec;
-  vector<vector<int>> liste;
+  vector<vector<int>> liste = {};
   for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
+      vec = {};
 		  float random = float (rand()) / float (RAND_MAX);
+      cout << random << endl;
 		  if(random<=P_death_){
         grille[i][j].mort();
-        vec[1]=i;
-        vec[2]=j;
+        cout << "j'ai appelé mort" << endl;
+        vec.push_back(i);
+        vec.push_back(j);
+        cout << "j'ai stocké les coordonnées" << endl;
         liste.push_back(vec);
+        cout << "j'ai créé ma liste" << endl;
       }
     }
   }
