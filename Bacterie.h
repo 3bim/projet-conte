@@ -27,7 +27,8 @@ class Bacterie {
 
 		virtual Bacterie* reproduire() = 0;
 
-
+		virtual char type() = 0;
+		
 	protected:
 		map<char,double> phenotype_;
 		double fitness_;

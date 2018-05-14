@@ -58,8 +58,15 @@ Environnement::~Environnement(){
 
 //Getters
 
-Case Environnement::get_case(int i, int j){
-	return grille[i][j];
+Case Environnement::montre_moi(){
+	for (int i=0; i<H_; i++){
+		for(int j=0; j<W_; j++){
+      cout << "La case contient une bactérie de type" << grille[i][j].bacterie_.type() << endl;
+      cout << "La case contient " << grille[i][j].metabolites()['A'] << "du métabolites A." << endl;
+      cout << "La case contient " << grille[i][j].metabolites()['B'] << "du métabolites B." << endl;
+      cout << "La case contient " << grille[i][j].metabolites()['C'] << "du métabolites C." << endl;
+		}
+	}
 }
 
 //Public method

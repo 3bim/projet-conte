@@ -15,6 +15,10 @@ class BacterieB : public Bacterie {
 		void set_fitness();
 		
 		Bacterie* reproduire();
+		
+		inline char type();
 };
+
+inline char BacterieB::type() {return 'B';}
 
 #endif

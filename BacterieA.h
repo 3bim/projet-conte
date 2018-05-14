@@ -15,6 +15,9 @@ class BacterieA : public Bacterie {
 		void set_fitness();
 		
 		Bacterie* reproduire();
+		
+		inline char type();
 };
 
+inline char BacterieA::type() {return 'A';}
 #endif
