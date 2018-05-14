@@ -237,3 +237,16 @@ void Environnement::metabolism(){
     }  
   }
 }
+
+void Environnement::run(int t){
+  vector<vector<int>> vec;
+	for (int i=0; i<t; i++){
+	  if(i%(T_) == 0){
+			reset();
+		}
+		diffusion();
+		vec=death();
+		division(vec);
+		metabolism();
+  }
+}
