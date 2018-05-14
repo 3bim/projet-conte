@@ -35,10 +35,10 @@ class Case {
 	//Attribut :
 	Bacterie * bacterie_;
 	 
-	 protected :
+	protected :
 	 
-	 //Attribut :
-	 map<char,double> metabolites_;
+	//Attribut :
+	map<char,double> metabolites_;
 	 
 };
 

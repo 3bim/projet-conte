@@ -76,9 +76,7 @@ double Case::fitness(){
 }
 
 //Associe la bonne valeur de métabolisme à la bactérie de la case (quand elle métabolise)
-//(que retourne bacterie->metabolisme() ????)
 void Case::metabolisme(){
-	
 	bacterie_->metabolisme(&metabolisme_);
 }
 
@@ -93,7 +91,7 @@ void Case::mort(){
 }
 
 //(que retourne bacterie->reproduire() ????)
-void Case::division(Bacterie bacterie){
+void Case::division(Bacterie * bacterie){
 	bacterie_=bacterie->reproduire();
 }
 	
