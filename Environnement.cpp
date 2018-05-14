@@ -213,7 +213,7 @@ void Environnement::division(vector<vector<int>> vec){
 			    else if(b+l<0){
 				    y=W_-1;
 			    }
-			    else{0
+			    else{
 				    y=b+l;
 			    }
 					if(grille[x][y].fitness()>fitness_max){
