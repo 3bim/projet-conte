@@ -29,7 +29,7 @@ void diffusion();
 vector<vector<int>> death();
 void division(vector<vector<int>>);
 void metabolism();
-//int run(int t);
+void run(int t);
 
 //Attributes
 protected :
@@ -42,8 +42,6 @@ float D_;
 float P_mut_;
 float P_death_;
 Case** grille;
-int nA;
-int nB;
 };
 
 #endif 

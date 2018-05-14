@@ -12,7 +12,7 @@ using namespace std;
 
 Case::Case(){
 	metabolites_['A']=0.;
-	metabolites_['B']=0,;
+	metabolites_['B']=0.;
 	metabolites_['C']=0.;
 	bacterie_=nullptr;
 }
@@ -21,7 +21,7 @@ Case::Case(map<char,double> metabolites, char c){
 	if (c=='A'){
 		bacterie_=new BacterieA();
 	}
-	if (c=='B'){
+	else if (c=='B'){
 		bacterie_=new BacterieB();
 	}
 	metabolites_['A']=metabolites['A'];
@@ -31,9 +31,8 @@ Case::Case(map<char,double> metabolites, char c){
 
 
 //Destructeur :
-
 Case::~Case(){
-	if(bacterie_!=nullptr){
+	if(bacterie_){
 		delete bacterie_;
 	}
 }
@@ -77,13 +76,13 @@ double Case::fitness(){
 
 //Associe la bonne valeur de métabolisme à la bactérie de la case (quand elle métabolise)
 void Case::metabolisme(){
-	bacterie_->metabolisme(&metabolisme_);
+	bacterie_->metabolisme(&(metabolites_));
 }
 
 //Rajoute les valeurs de phénotype à métabolismes quand la bactérie meurt 
 //Détruit la bactérie
 void Case::mort(){
-	phenotype=bacterie_->phenotype();
+	map<char,double> phenotype=bacterie_->phenotype();
 	metabolites_['A']=metabolites_['A']+phenotype['A'];
 	metabolites_['B']=metabolites_['B']+phenotype['B'];
 	metabolites_['C']=metabolites_['C']+phenotype['C'];
@@ -99,7 +98,7 @@ void Case::division(Bacterie * bacterie){
 void Case::initialiser(double Init){
 	metabolites_['A']=Init;
 	metabolites_['B']=0.;
-	metabolites['C']=0.;
+	metabolites_['C']=0.;
 }
 
 
