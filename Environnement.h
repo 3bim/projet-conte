@@ -19,7 +19,7 @@ Environnement(double Ainit,int T,float D,float P_mut,float P_death);
 
 //Getters
 
-Case get_case(int i, int j);
+void montre_moi();
 
 //Public methods
 

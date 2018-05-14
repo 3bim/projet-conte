@@ -3,6 +3,7 @@
 #include "BacterieA.h"
 #include "BacterieB.h"
 #include "Case.h"
+#include "Environnement.h"
 
 using namespace std;
 
@@ -43,6 +44,10 @@ int main(){
 		delete bac;
 		delete bac2;
 		//delete bac3;
+
+    Environnement monde = Environnement();
+    monde.get_case();
+
     return 0;
   
     
