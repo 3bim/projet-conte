@@ -42,8 +42,6 @@ float D_;
 float P_mut_;
 float P_death_;
 Case** grille;
-int nA;
-int nB;
 };
 
 #endif 
