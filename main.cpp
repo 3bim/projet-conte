@@ -36,13 +36,13 @@ int main(){
     for(int i=0;i<10;++i) {
         bac3 = bac2->reproduire();
         cout << bac3->fitness() << endl;
-        delete bac2;
-        bac2=bac3;
+        delete bac3;
     }
 
+		
 		delete bac;
-		//delete bac2;
-		delete bac3;
+		delete bac2;
+		//delete bac3;
     return 0;
   
     
