@@ -78,7 +78,8 @@ double Case::fitness(){
 //Associe la bonne valeur de métabolisme à la bactérie de la case (quand elle métabolise)
 //(que retourne bacterie->metabolisme() ????)
 void Case::metabolisme(){
-	metabolisme_=bacterie_->metabolisme(map<char,double> metabolisme_);
+	
+	bacterie_->metabolisme(&metabolisme_);
 }
 
 //Rajoute les valeurs de phénotype à métabolismes quand la bactérie meurt 
@@ -96,6 +97,12 @@ void Case::division(Bacterie bacterie){
 	bacterie_=bacterie->reproduire();
 }
 	
+//Réinitialise les métabolites de la case tous les T pas de temps
+void Case::initialiser(double Init){
+	metabolites_['A']=Init;
+	metabolites_['B']=0.;
+	metabolites['C']=0.;
+}
 
 
 

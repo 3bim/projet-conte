@@ -32,13 +32,12 @@ class Case {
 	void division();
 	
 	//Attribut :
-	bacterie_->metabolisme(map<char,double> metabolisme_);
+	Bacterie * bacterie_;
 	 
 	 protected :
 	 
 	 //Attribut :
 	 map<char,double> metabolites_;
-bacterie_->metabolisme(map<char,double> metabolisme_);
 	 
 };
 
