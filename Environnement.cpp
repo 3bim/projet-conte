@@ -227,3 +227,11 @@ void Environnement::division(vector<vector<int>> vec){
     grille[a][b].division(grille[x_max][y_max].bacterie_);
   }
 }
+
+void Environnement::metabolism(){
+  for (int i=0; i<H_; i++){
+		for(int j=0; j<W_; j++){
+      grille[i][j].metabolism();
+    }  
+  }
+}
