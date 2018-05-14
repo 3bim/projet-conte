@@ -3,6 +3,7 @@
 #include "Bacterie.h"
 #include <cstdio>
 #include <cstdlib>
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <map>
@@ -26,8 +27,6 @@ Environnement::Environnement(){
 	}
 	reset();	
 	filling();
-	nA = W_*H_/2;
-	nB = W_*H_/2;
 }
 
 Environnement::Environnement(double Ainit,int T,float D, float P_mut, float P_death){
@@ -38,14 +37,12 @@ Environnement::Environnement(double Ainit,int T,float D, float P_mut, float P_de
 	D_ = D;
 	P_mut_=P_mut;
   P_death_ =P_death;
-	grille  = new Case* [H_];
+	grille = new Case* [H_];
 	for(int i=0; i<H_;i++){
 		grille[i] = new Case[W_];
 	}
 	reset();	
 	filling();
-	nA = W_*H_/2;
-	nB = W_*H_/2;
 }
 
 //Destructor
@@ -76,25 +73,25 @@ void Environnement::reset(){
 }
 
 void Environnement::filling(){
-	int compA=0;
-	int compB=0;
+	int compA=(H_*W_)/2;
+	int compB=(H_*W_)/2;
 	char remaining = ' ';
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-			if(compA<W_*H_/2 && compB<W_*H_/2){
-				int random = rand() % 2;
-				if(random==0){
+			if(compA>0 && compB>0){
+				float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+				if(random<=compA/(compA+compB)){
 					grille[i][j].set_bacterie('A');
-					compA++;
+					compA--;
 				}
 				else{
-					grille[i][j].set_bacterie('A');
-					compB++;
+					grille[i][j].set_bacterie('B');
+					compB--;
 				}
-				if(compA==W_*H_/2){
+				if(compA==0){
 					remaining = 'B';
 				}
-				if(compB==W_*H_/2){
+				if(compB==0){
 					remaining = 'A';
 				}
 				
@@ -189,6 +186,7 @@ vector<vector<int>> Environnement::death(){
 void Environnement::division(vector<vector<int>> vec){
   int a;
   int b;
+  random_shuffle(vec.begin(),vec.end());
   for (int i=0;i<vec.size();i++){
     a = vec[i][1];
     b = vec[i][2];
