@@ -65,14 +65,23 @@ void Case::set_metabolites(map<char,double> metabolites){
 
 //Méthodes publiques :
 
+//Renvoie la fitness associée à la bactérie présente dans la case.
 double Case::fitness(){
-	return bacterie_->fitness();
+	if (bacterie_=nullptr){
+		return 0;
+	}
+	else {
+		return bacterie_->fitness();
+	}
 }
 
+//Associe la bonne valeur de métabolisme à la bactérie de la case (quand elle métabolise)
 void Case::metabolisme(){
-	metabolisme_=bacterie_->metabolisme(map<char,double> metabolisme_);
+	bacterie_->metabolisme(&metabolisme_);
 }
 
+//Rajoute les valeurs de phénotype à métabolismes quand la bactérie meurt 
+//Détruit la bactérie
 void Case::mort(){
 	phenotype=bacterie_->phenotype();
 	metabolites_['A']=metabolites_['A']+phenotype['A'];
@@ -81,10 +90,17 @@ void Case::mort(){
 	delete bacterie_;
 }
 
-void Case::division(Bacterie bacterie){
+//(que retourne bacterie->reproduire() ????)
+void Case::division(Bacterie * bacterie){
 	bacterie_=bacterie->reproduire();
 }
 	
+//Réinitialise les métabolites de la case tous les T pas de temps
+void Case::initialiser(double Init){
+	metabolites_['A']=Init;
+	metabolites_['B']=0.;
+	metabolites['C']=0.;
+}
 
 
 

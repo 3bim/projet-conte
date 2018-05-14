@@ -27,9 +27,9 @@ void reset();
 void filling();
 void diffusion();
 vector<vector<int>> death();
-void competition(vector<vector<int>>);
+void division(vector<vector<int>>);
 void metabolism();
-int run(int t);
+//int run(int t);
 
 //Attributes
 protected :
