@@ -20,7 +20,7 @@ int main(){
     cout << bac2->fitness() << endl;
 
     map<char,double> meta = {{'A',1.},{'B',2.},{'C',3.}};
-    meta['B']=bac2->metabolisme(meta);
+    bac2->metabolisme(&meta);
     for(map<char,double>::iterator it=meta.begin();it!=meta.end();++it) cout << it->first << " ; " << it->second << endl;
 
     phen=bac2->phenotype();
@@ -40,6 +40,9 @@ int main(){
         bac2=bac3;
     }
 
+		delete bac;
+		//delete bac2;
+		delete bac3;
     return 0;
 }
 

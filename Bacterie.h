@@ -18,14 +18,10 @@ class Bacterie {
 		Bacterie(double a, double b, double c);
 		virtual ~Bacterie();
 
-/*		inline double A() const;
-		inline double B() const;
-		inline double C() const; */
-
 		inline map<char,double> phenotype() const;
 		inline double fitness() const;
 
-		virtual double metabolisme(map<char,double> ext) = 0;
+		virtual void metabolisme(map<char,double>* ext) = 0;
 
 		virtual void set_fitness() = 0;
 
@@ -44,16 +40,5 @@ inline map<char,double> Bacterie::phenotype() const {
 inline double Bacterie::fitness() const {
     return fitness_;
 }
-/*inline double Bacterie::A() const {
-	return phenotype_['A'];
-}
-
-inline double Bacterie::B() const {
-	return phenotype_['B'];
-}
-
-inline double Bacterie::C() const {
-	return phenotype_['C'];
-}	*/
 
 #endif
