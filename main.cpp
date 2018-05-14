@@ -4,11 +4,12 @@
 #include "BacterieB.h"
 #include "Case.h"
 #include "Environnement.h"
+#include <vector>
 
 using namespace std;
 
 int main(){
-    Bacterie* bac=new BacterieA();
+    /*Bacterie* bac=new BacterieA();
 
     Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
 
@@ -42,11 +43,22 @@ int main(){
 
 		
 		delete bac;
-		delete bac2;
+		delete bac2;*/
 		//delete bac3;
 
     Environnement monde = Environnement();
-    monde.get_case();
+    monde.montre_moi();
+    vector<vector<int>> vec;
+    for (int i =0; i<5000; i++){
+      if(i%(500) == 0){
+			monde.reset();
+		  }
+      monde.diffusion();
+      vec = monde.death();
+      monde.division(vec);
+      monde.metabolism();
+    }
+    monde.montre_moi();
 
     return 0;
   

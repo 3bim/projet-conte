@@ -15,8 +15,8 @@ using namespace std;
 
 Environnement::Environnement(){
 	Ainit_ = 5;
-	W_ = 32; 
-	H_ = 32; 
+	W_ = 4; 
+	H_ = 4; 
 	T_ = 700;
 	D_ = 0.1;
 	P_mut_ = 0;
@@ -58,13 +58,10 @@ Environnement::~Environnement(){
 
 //Getters
 
-Case Environnement::montre_moi(){
+void Environnement::montre_moi(){
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-      cout << "La case contient une bactérie de type" << grille[i][j].bacterie_.type() << endl;
-      cout << "La case contient " << grille[i][j].metabolites()['A'] << "du métabolites A." << endl;
-      cout << "La case contient " << grille[i][j].metabolites()['B'] << "du métabolites B." << endl;
-      cout << "La case contient " << grille[i][j].metabolites()['C'] << "du métabolites C." << endl;
+      cout << "La case [" << i << "][" << j << "] contient une bactérie de type " << grille[i][j].bacterie_->type() << "\n" << grille[i][j].metabolites()['A'] << " mol du métabolites A." << "\n" << grille[i][j].metabolites()['B'] << " du métabolites B." << "\n"<< grille[i][j].metabolites()['C'] << " du métabolites C." << endl;
 		}
 	}
 }
@@ -80,13 +77,13 @@ void Environnement::reset(){
 }
 
 void Environnement::filling(){
-	int compA=(H_*W_)/2;
-	int compB=(H_*W_)/2;
+  float compA=(H_*W_)/2;
+	float compB=(H_*W_)/2;
 	char remaining = ' ';
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
 			if(compA>0 && compB>0){
-				float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+				float random = float (rand()) / float (RAND_MAX);
 				if(random<=compA/(compA+compB)){
 					grille[i][j].set_bacterie('A');
 					compA--;
@@ -178,7 +175,7 @@ vector<vector<int>> Environnement::death(){
   vector<vector<int>> liste;
   for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-		  float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		  float random = float (rand()) / float (RAND_MAX);
 		  if(random<=P_death_){
         grille[i][j].mort();
         vec[1]=i;
