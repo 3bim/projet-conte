@@ -11,10 +11,13 @@ int main(){
     cout<< "Hello World !" <<endl;
     cout<< " " <<endl;
 
-	Environnement environnement1 ();
-	Environnement environnement2 (25,7500,0.1,0);
+	//Environnement environnement1 ();
+	//Environnement environnement2 (25,7500,0.1,0);
 	
-	environnement.diffusion();
+	//environnement.diffusion();
+	
+	Case case ();
+	
 	
     return 0;
   
