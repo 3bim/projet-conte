@@ -1,5 +1,6 @@
 #include "Environnement.h"
 #include "Case.h"
+#include "Bacterie.h"
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -56,6 +57,7 @@ Environnement::~Environnement(){
 		}
 	}
 	delete[] grille;
+}
 
 //Getters
 
@@ -68,7 +70,7 @@ Case Environnement::get_case(int i, int j){
 void Environnement::reset(){
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-			grille[i][j].reset(Ainit_);
+			grille[i][j].initialiser(Ainit_);
 		}
 	}
 }
@@ -140,9 +142,9 @@ void Environnement::diffusion(){
 					/*for(int m=0; m<3; m++){
 					  metab[m] = metab[m] + D_*(grille[v][h].metabolites()[m]);
 					}*/
-          metab['A']= metab['A'] + D_*(grille[v][h].metabolites()['A']);
-          metab['B']= metab['B'] + D_*(grille[v][h].metabolites()['B']);
-          metab['C']= metab['C'] + D_*(grille[v][h].metabolites()['C']);
+          metab['A']= metab['A'] + D_*(grille[x][y].metabolites()['A']);
+          metab['B']= metab['B'] + D_*(grille[x][y].metabolites()['B']);
+          metab['C']= metab['C'] + D_*(grille[x][y].metabolites()['C']);
         } 
       }
 			/*for(int m=0; m<3; m++){
@@ -174,7 +176,7 @@ vector<vector<int>> Environnement::death(){
 		for(int j=0; j<W_; j++){
 		  float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		  if(random<=P_death_){
-        grille[i][j].death();
+        grille[i][j].mort();
         vec[1]=i;
         vec[2]=j;
         liste.push_back(vec);
@@ -231,7 +233,7 @@ void Environnement::division(vector<vector<int>> vec){
 void Environnement::metabolism(){
   for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-      grille[i][j].metabolism();
+      grille[i][j].metabolisme();
     }  
   }
 }
