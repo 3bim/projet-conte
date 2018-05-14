@@ -2,11 +2,19 @@
 #include "Bacterie.h"
 #include "BacterieA.h"
 #include "BacterieB.h"
-#include "Case.h"
+//#include "Case.h"
 
 using namespace std;
 
 int main(){
+<<<<<<< HEAD
+    //Vérification de la mise en place de l'environnement
+    cout<< "Hello World !" <<endl;
+    cout<< " " <<endl;
+
+	
+	
+=======
     Bacterie* bac=new BacterieA();
 
     Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
@@ -40,6 +48,7 @@ int main(){
         bac2=bac3;
     }
 
+>>>>>>> 033c5973d95e64cfe64fac2983e799e17be3a54e
     return 0;
 }
 
