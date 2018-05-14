@@ -86,7 +86,10 @@ void Case::mort(){
 	metabolites_['A']=metabolites_['A']+phenotype['A'];
 	metabolites_['B']=metabolites_['B']+phenotype['B'];
 	metabolites_['C']=metabolites_['C']+phenotype['C'];
-	delete bacterie_;
+	if (bacterie_){
+		delete bacterie_;
+		bacterie_=nullptr;
+	}
 }
 
 //(que retourne bacterie->reproduire() ????)
