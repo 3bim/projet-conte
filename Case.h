@@ -29,7 +29,7 @@ class Case {
 	double fitness();
 	void mort();
 	void metabolisme();
-	void division();
+	void division(Bacterie * bacterie);
 	void initialiser(double Init);
 	
 	//Attribut :
