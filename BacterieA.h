@@ -10,7 +10,7 @@ class BacterieA : public Bacterie {
 		
 		virtual ~BacterieA();
 		
-		double metabolisme(map<char,double> ext);
+		void metabolisme(map<char,double>* ext);
 		
 		void set_fitness();
 		

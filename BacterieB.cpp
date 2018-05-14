@@ -9,11 +9,11 @@ BacterieB::BacterieB(double a, double b, double c) : Bacterie::Bacterie(a, b, c)
 
 BacterieB::~BacterieB() = default;
 
-double BacterieB::metabolisme(map<char,double> ext) {
-	phenotype_['B']=phenotype_['B']+ext['B']*R_BB-phenotype_['B']*R_BC;
+void BacterieB::metabolisme(map<char,double>* ext) {
+	phenotype_['B']=phenotype_['B']+(*ext)['B']*R_BB-phenotype_['B']*R_BC;
 	phenotype_['C']=phenotype_['C']+phenotype_['B']*R_BC;
 	set_fitness();
-	return ext['B']-ext['B']*R_BB;
+	(*ext)['B']=(*ext)['B']-(*ext)['B']*R_BB;
 }
 
 void BacterieB::set_fitness() {

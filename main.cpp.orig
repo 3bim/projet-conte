@@ -2,11 +2,19 @@
 #include "Bacterie.h"
 #include "BacterieA.h"
 #include "BacterieB.h"
-#include "Case.h"
+//#include "Case.h"
 
 using namespace std;
 
 int main(){
+<<<<<<< HEAD
+    //Vérification de la mise en place de l'environnement
+    cout<< "Hello World !" <<endl;
+    cout<< " " <<endl;
+
+	
+	
+=======
     Bacterie* bac=new BacterieA();
 
     Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
@@ -20,7 +28,7 @@ int main(){
     cout << bac2->fitness() << endl;
 
     map<char,double> meta = {{'A',1.},{'B',2.},{'C',3.}};
-    bac2->metabolisme(&meta);
+    meta['B']=bac2->metabolisme(meta);
     for(map<char,double>::iterator it=meta.begin();it!=meta.end();++it) cout << it->first << " ; " << it->second << endl;
 
     phen=bac2->phenotype();
@@ -40,11 +48,7 @@ int main(){
         bac2=bac3;
     }
 
-		delete bac;
-		//delete bac2;
-		delete bac3;
+>>>>>>> 033c5973d95e64cfe64fac2983e799e17be3a54e
     return 0;
-  
-    
 }
 
