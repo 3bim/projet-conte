@@ -30,6 +30,7 @@ class Case {
 	void mort();
 	void metabolisme();
 	void division();
+	void initialiser(double Init);
 	
 	//Attribut :
 	Bacterie * bacterie_;
