@@ -66,8 +66,8 @@ void Case::set_metabolites(map<char,double> metabolites){
 
 //Renvoie la fitness associée à la bactérie présente dans la case.
 double Case::fitness(){
-	if (bacterie_=nullptr){
-		return 0;
+	if (bacterie_==nullptr){
+		return -1;
 	}
 	else {
 		return bacterie_->fitness();
@@ -86,12 +86,15 @@ void Case::mort(){
 	metabolites_['A']=metabolites_['A']+phenotype['A'];
 	metabolites_['B']=metabolites_['B']+phenotype['B'];
 	metabolites_['C']=metabolites_['C']+phenotype['C'];
-	delete bacterie_;
+	if (bacterie_){
+		delete bacterie_;
+		bacterie_=nullptr;
+	}
 }
 
 //(que retourne bacterie->reproduire() ????)
 void Case::division(Bacterie * bacterie){
-	bacterie_=bacterie->reproduire();
+  bacterie_=bacterie->reproduire();
 }
 	
 //Réinitialise les métabolites de la case tous les T pas de temps

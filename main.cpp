@@ -3,11 +3,13 @@
 #include "BacterieA.h"
 #include "BacterieB.h"
 #include "Case.h"
+#include "Environnement.h"
+#include <vector>
 
 using namespace std;
 
 int main(){
-    Bacterie* bac=new BacterieA();
+    /*Bacterie* bac=new BacterieA();
 
     Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
  
@@ -41,8 +43,13 @@ int main(){
 
 		cout << bac->type() << endl << bac2->type() <<endl ;
 		delete bac;
-		delete bac2;
+		delete bac2;*/
 		//delete bac3;
+
+    Environnement monde = Environnement();
+
+    monde.run(5000);
+
     return 0;
   
     

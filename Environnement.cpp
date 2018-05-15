@@ -17,7 +17,7 @@ Environnement::Environnement(){
 	Ainit_ = 5;
 	W_ = 32; 
 	H_ = 32; 
-	T_ = 700;
+	T_ = 500;
 	D_ = 0.1;
 	P_mut_ = 0;
   P_death_ = 0.02;
@@ -58,8 +58,20 @@ Environnement::~Environnement(){
 
 //Getters
 
-Case Environnement::get_case(int i, int j){
-	return grille[i][j];
+void Environnement::montre_moi(){
+  int compA = 0;
+  int compB = 0;
+	for (int i=0; i<H_; i++){
+		for(int j=0; j<W_; j++){
+      if(grille[i][j].bacterie_->type()=='A'){
+        compA++;
+      }
+      else if(grille[i][j].bacterie_->type()=='B'){
+        compB++;
+      } 
+		}
+	}
+  cout << compA << "\t" << compB << endl;
 }
 
 //Public method
@@ -73,13 +85,13 @@ void Environnement::reset(){
 }
 
 void Environnement::filling(){
-	int compA=(H_*W_)/2;
-	int compB=(H_*W_)/2;
+  float compA=(H_*W_)/2;
+	float compB=(H_*W_)/2;
 	char remaining = ' ';
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
 			if(compA>0 && compB>0){
-				float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+				float random = float (rand()) / float (RAND_MAX);
 				if(random<=compA/(compA+compB)){
 					grille[i][j].set_bacterie('A');
 					compA--;
@@ -168,14 +180,15 @@ void Environnement::diffusion(){
 
 vector<vector<int>> Environnement::death(){
   vector<int> vec;
-  vector<vector<int>> liste;
+  vector<vector<int>> liste = {};
   for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-		  float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+      vec = {};
+		  float random = float (rand()) / float (RAND_MAX);
 		  if(random<=P_death_){
         grille[i][j].mort();
-        vec[1]=i;
-        vec[2]=j;
+        vec.push_back(i);
+        vec.push_back(j);
         liste.push_back(vec);
       }
     }
@@ -188,8 +201,8 @@ void Environnement::division(vector<vector<int>> vec){
   int b;
   random_shuffle(vec.begin(),vec.end());
   for (int i=0;i<vec.size();i++){
-    a = vec[i][1];
-    b = vec[i][2];
+    a = vec[i][0];
+    b = vec[i][1];
     double fitness_max=0;
     int x_max=0;
     int y_max=0;
@@ -216,11 +229,11 @@ void Environnement::division(vector<vector<int>> vec){
 			    else{
 				    y=b+l;
 			    }
-					if(grille[x][y].fitness()>fitness_max){
+					if(grille[x][y].fitness()>=fitness_max){
 					  fitness_max=grille[x][y].fitness();
 						x_max=x;
 						y_max=y; 
-          }         
+          }       
         }
       }
     }
@@ -239,12 +252,16 @@ void Environnement::metabolism(){
 void Environnement::run(int t){
   vector<vector<int>> vec;
 	for (int i=0; i<t; i++){
-	  if(i%(T_) == 0){
-			reset();
-		}
+    if(i%(T_/10) == 0){
+	    if(i%(T_) == 0){
+			  reset();
+		  }
+    montre_moi();
+    }
 		diffusion();
 		vec=death();
 		division(vec);
 		metabolism();
   }
+  montre_moi();
 }
