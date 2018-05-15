@@ -10,7 +10,7 @@ int main(){
     Bacterie* bac=new BacterieA();
 
     Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
-
+ 
     map<char,double> phen=bac->phenotype();
     for(map<char,double>::iterator it=phen.begin();it!=phen.end();++it) cout << it->first << " ; " << it->second << endl;
     cout << bac->fitness() << endl;
@@ -39,7 +39,7 @@ int main(){
         delete bac3;
     }
 
-		
+		cout << bac->type() << endl << bac2->type() <<endl ;
 		delete bac;
 		delete bac2;
 		//delete bac3;

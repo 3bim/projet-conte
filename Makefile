@@ -1,7 +1,7 @@
 CXXFLAGS = -Wall 
 
-TP7:TP7.o String.o
-	$(CXX) $(CXXFLAGS) -o TP7 TP7.o String.o
+Projet_Comte:Bacterie.o BacterieA.o BacterieB.o Case.o Environnement.o main.o
+	$(CXX) $(CXXFLAGS) Bacterie.o BacterieA.o BacterieB.o Case.o Environnement.o main.o -o Projet_comte -std=c++11
   
 TP7.o: TP7.cpp String.h
 	$(CXX) $(CXXFLAGS) -o TP7.o -c TP7.cpp
