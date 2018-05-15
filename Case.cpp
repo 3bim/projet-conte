@@ -12,7 +12,7 @@ using namespace std;
 
 Case::Case(){
 	metabolites_['A']=0.;
-	metabolites_['B']=0,;
+	metabolites_['B']=0.;
 	metabolites_['C']=0.;
 	bacterie_=nullptr;
 }
@@ -70,7 +70,7 @@ double Case::fitness(){
 }
 
 void Case::metabolisme(){
-	metabolisme_=bacterie_->metabolisme(map<char,double> metabolisme_);
+	//metabolisme_=bacterie_->metabolisme(map<char,double> metabolisme_);
 }
 
 void Case::mort(){
@@ -84,7 +84,7 @@ void Case::mort(){
 void Case::division(Bacterie bacterie){
 	bacterie_=bacterie->reproduire();
 }
-	
+
 
 
 
