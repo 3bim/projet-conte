@@ -47,21 +47,8 @@ int main(){
 		//delete bac3;
 
     Environnement monde = Environnement();
-    monde.montre_moi();
-    vector<vector<int>> vec;
-    for (int i =0; i<5000; i++){
-      if(i%(500) == 0){
-			monde.reset();
-		  }
-      monde.diffusion();
-      vec = monde.death();
-      for (int j = 0; vec.size(); j++){
-        cout << "on a" << vec[j][0] << vec[j][1] << endl;
-      }
-      monde.division(vec);
-      monde.metabolism();
-    }
-    monde.montre_moi();
+
+    monde.run(5000);
 
     return 0;
   
