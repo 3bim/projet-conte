@@ -15,7 +15,8 @@ class Bacterie {
 		const double W_min=0.02;
 
 		Bacterie();
-		Bacterie(double a, double b, double c);
+		Bacterie(map<char,double> phen);
+		
 		virtual ~Bacterie();
 
 		inline map<char,double> phenotype() const;

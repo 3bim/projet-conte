@@ -3,7 +3,7 @@
 #include "BacterieA.h"
 
 BacterieB::BacterieB() = default;
-BacterieB::BacterieB(double a, double b, double c) : Bacterie::Bacterie(a, b, c) {
+BacterieB::BacterieB(map<char,double> phen) : Bacterie::Bacterie(phen) {
 	set_fitness();
 }
 
@@ -24,12 +24,13 @@ void BacterieB::set_fitness() {
 Bacterie* BacterieB::reproduire() {
 	double alea=(double) rand()/RAND_MAX;
 	Bacterie* nv;
-	if (alea<=P_mut) nv = new BacterieA(phenotype_['A']/2, phenotype_['B']/2, phenotype_['C']/2);
-	else nv = new BacterieB(phenotype_['A']/2, phenotype_['B']/2, phenotype_['C']/2);
-
-	phenotype_['A']=phenotype_['A']/2;
-	phenotype_['B']=phenotype_['B']/2;
-	phenotype_['C']=phenotype_['C']/2;
+	
+	phenotype_['A']/=2;
+	phenotype_['B']/=2;
+	phenotype_['C']/=2;
+	
+	if (alea<=P_mut) nv = new BacterieA(phenotype_);
+	else nv = new BacterieB(phenotype_);
 
 	set_fitness();
 

@@ -6,7 +6,7 @@
 class BacterieA : public Bacterie {
 	public:
 		BacterieA();
-		BacterieA(double a, double b, double c);
+		BacterieA(map<char,double> phen);
 		
 		virtual ~BacterieA();
 		
