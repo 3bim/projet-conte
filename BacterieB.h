@@ -6,15 +6,19 @@
 class BacterieB : public Bacterie {
 	public:
 		BacterieB();
-		BacterieB(double a, double b, double c);
+		BacterieB(map<char,double> phen);
 		
 		virtual ~BacterieB();
 		
-		double metabolisme(map<char,double> ext);
+		void metabolisme(map<char,double>* ext);
 		
 		void set_fitness();
 		
 		Bacterie* reproduire();
+		
+		inline char type();
 };
+
+inline char BacterieB::type() {return 'B';}
 
 #endif

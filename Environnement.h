@@ -19,7 +19,7 @@ Environnement(double Ainit,int T,float D,float P_mut,float P_death);
 
 //Getters
 
-Case get_case(int i, int j);
+void montre_moi();
 
 //Public methods
 
@@ -27,9 +27,9 @@ void reset();
 void filling();
 void diffusion();
 vector<vector<int>> death();
-void competition(vector<vector<int>>);
+void division(vector<vector<int>>);
 void metabolism();
-int run(int t);
+void run(int t);
 
 //Attributes
 protected :
@@ -42,8 +42,6 @@ float D_;
 float P_mut_;
 float P_death_;
 Case** grille;
-int nA;
-int nB;
 };
 
 #endif 

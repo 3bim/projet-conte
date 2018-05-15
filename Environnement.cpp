@@ -1,7 +1,9 @@
 #include "Environnement.h"
 #include "Case.h"
+#include "Bacterie.h"
 #include <cstdio>
 #include <cstdlib>
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <map>
@@ -15,7 +17,7 @@ Environnement::Environnement(){
 	Ainit_ = 5;
 	W_ = 32; 
 	H_ = 32; 
-	T_ = 700;
+	T_ = 500;
 	D_ = 0.1;
 	P_mut_ = 0;
   P_death_ = 0.02;
@@ -25,8 +27,6 @@ Environnement::Environnement(){
 	}
 	reset();	
 	filling();
-	nA = W_*H_/2;
-	nB = W_*H_/2;
 }
 
 Environnement::Environnement(double Ainit,int T,float D, float P_mut, float P_death){
@@ -37,14 +37,12 @@ Environnement::Environnement(double Ainit,int T,float D, float P_mut, float P_de
 	D_ = D;
 	P_mut_=P_mut;
   P_death_ =P_death;
-	grille  = new Case* [H_];
+	grille = new Case* [H_];
 	for(int i=0; i<H_;i++){
 		grille[i] = new Case[W_];
 	}
 	reset();	
 	filling();
-	nA = W_*H_/2;
-	nB = W_*H_/2;
 }
 
 //Destructor
@@ -56,11 +54,24 @@ Environnement::~Environnement(){
 		}
 	}
 	delete[] grille;
+}
 
 //Getters
 
-Case Environnement::get_case(int i, int j){
-	return grille[i][j];
+void Environnement::montre_moi(){
+  int compA = 0;
+  int compB = 0;
+	for (int i=0; i<H_; i++){
+		for(int j=0; j<W_; j++){
+      if(grille[i][j].bacterie_->type()=='A'){
+        compA++;
+      }
+      else if(grille[i][j].bacterie_->type()=='B'){
+        compB++;
+      } 
+		}
+	}
+  cout << compA << "\t" << compB << endl;
 }
 
 //Public method
@@ -68,31 +79,31 @@ Case Environnement::get_case(int i, int j){
 void Environnement::reset(){
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-			grille[i][j].reset(Ainit_);
+			grille[i][j].initialiser(Ainit_);
 		}
 	}
 }
 
 void Environnement::filling(){
-	int compA=0;
-	int compB=0;
+  float compA=(H_*W_)/2;
+	float compB=(H_*W_)/2;
 	char remaining = ' ';
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-			if(compA<W_*H_/2 && compB<W_*H_/2){
-				int random = rand() % 2;
-				if(random==0){
+			if(compA>0 && compB>0){
+				float random = float (rand()) / float (RAND_MAX);
+				if(random<=compA/(compA+compB)){
 					grille[i][j].set_bacterie('A');
-					compA++;
+					compA--;
 				}
 				else{
-					grille[i][j].set_bacterie('A');
-					compB++;
+					grille[i][j].set_bacterie('B');
+					compB--;
 				}
-				if(compA==W_*H_/2){
+				if(compA==0){
 					remaining = 'B';
 				}
-				if(compB==W_*H_/2){
+				if(compB==0){
 					remaining = 'A';
 				}
 				
@@ -140,9 +151,9 @@ void Environnement::diffusion(){
 					/*for(int m=0; m<3; m++){
 					  metab[m] = metab[m] + D_*(grille[v][h].metabolites()[m]);
 					}*/
-          metab['A']= metab['A'] + D_*(grille[v][h].metabolites()['A']);
-          metab['B']= metab['B'] + D_*(grille[v][h].metabolites()['B']);
-          metab['C']= metab['C'] + D_*(grille[v][h].metabolites()['C']);
+          metab['A']= metab['A'] + D_*(grille[x][y].metabolites()['A']);
+          metab['B']= metab['B'] + D_*(grille[x][y].metabolites()['B']);
+          metab['C']= metab['C'] + D_*(grille[x][y].metabolites()['C']);
         } 
       }
 			/*for(int m=0; m<3; m++){
@@ -169,14 +180,15 @@ void Environnement::diffusion(){
 
 vector<vector<int>> Environnement::death(){
   vector<int> vec;
-  vector<vector<int>> liste;
+  vector<vector<int>> liste = {};
   for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
-		  float random = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+      vec = {};
+		  float random = float (rand()) / float (RAND_MAX);
 		  if(random<=P_death_){
-        grille[i][j].death();
-        vec[1]=i;
-        vec[2]=j;
+        grille[i][j].mort();
+        vec.push_back(i);
+        vec.push_back(j);
         liste.push_back(vec);
       }
     }
@@ -187,9 +199,10 @@ vector<vector<int>> Environnement::death(){
 void Environnement::division(vector<vector<int>> vec){
   int a;
   int b;
+  random_shuffle(vec.begin(),vec.end());
   for (int i=0;i<vec.size();i++){
-    a = vec[i][1];
-    b = vec[i][2];
+    a = vec[i][0];
+    b = vec[i][1];
     double fitness_max=0;
     int x_max=0;
     int y_max=0;
@@ -216,14 +229,39 @@ void Environnement::division(vector<vector<int>> vec){
 			    else{
 				    y=b+l;
 			    }
-					if(grille[x][y].fitness()>fitness_max){
+					if(grille[x][y].fitness()>=fitness_max){
 					  fitness_max=grille[x][y].fitness();
 						x_max=x;
 						y_max=y; 
-          }         
+          }       
         }
       }
     }
     grille[a][b].division(grille[x_max][y_max].bacterie_);
   }
+}
+
+void Environnement::metabolism(){
+  for (int i=0; i<H_; i++){
+		for(int j=0; j<W_; j++){
+      grille[i][j].metabolisme();
+    }  
+  }
+}
+
+void Environnement::run(int t){
+  vector<vector<int>> vec;
+	for (int i=0; i<t; i++){
+    if(i%(T_/10) == 0){
+	    if(i%(T_) == 0){
+			  reset();
+		  }
+    montre_moi();
+    }
+		diffusion();
+		vec=death();
+		division(vec);
+		metabolism();
+  }
+  montre_moi();
 }

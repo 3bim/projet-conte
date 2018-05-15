@@ -2,15 +2,17 @@
 #include "Bacterie.h"
 #include "BacterieA.h"
 #include "BacterieB.h"
-//#include "Case.h"
+#include "Case.h"
+#include "Environnement.h"
+#include <vector>
 
 using namespace std;
 
 int main(){
-    Bacterie* bac=new BacterieA();
+    /*Bacterie* bac=new BacterieA();
 
     Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
-
+ 
     map<char,double> phen=bac->phenotype();
     for(map<char,double>::iterator it=phen.begin();it!=phen.end();++it) cout << it->first << " ; " << it->second << endl;
     cout << bac->fitness() << endl;
@@ -20,7 +22,7 @@ int main(){
     cout << bac2->fitness() << endl;
 
     map<char,double> meta = {{'A',1.},{'B',2.},{'C',3.}};
-    meta['B']=bac2->metabolisme(meta);
+    bac2->metabolisme(&meta);
     for(map<char,double>::iterator it=meta.begin();it!=meta.end();++it) cout << it->first << " ; " << it->second << endl;
 
     phen=bac2->phenotype();
@@ -36,10 +38,20 @@ int main(){
     for(int i=0;i<10;++i) {
         bac3 = bac2->reproduire();
         cout << bac3->fitness() << endl;
-        delete bac2;
-        bac2=bac3;
+        delete bac3;
     }
 
+		cout << bac->type() << endl << bac2->type() <<endl ;
+		delete bac;
+		delete bac2;*/
+		//delete bac3;
+
+    Environnement monde = Environnement();
+
+    monde.run(5000);
+
     return 0;
+  
+    
 }
 

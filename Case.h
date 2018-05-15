@@ -29,13 +29,16 @@ class Case {
 	double fitness();
 	void mort();
 	void metabolisme();
-	void division();
+	void division(Bacterie * bacterie);
+	void initialiser(double Init);
+	
+	//Attribut :
+	Bacterie * bacterie_;
 	 
-	 protected :
+	protected :
 	 
-	 //Attributs :
-	 map<char,double> metabolites_;
-	 Bacterie * bacterie_;
+	//Attribut :
+	map<char,double> metabolites_;
 	 
 };
 
