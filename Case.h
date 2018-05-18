@@ -41,5 +41,4 @@ class Case {
 	map<char,double> metabolites_;
 	 
 };
-
 #endif
