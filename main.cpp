@@ -44,11 +44,18 @@ int main(){
 		cout << bac->type() << endl << bac2->type() <<endl ;
 		delete bac;
 		delete bac2;*/
-		//delete bac3;
 
     Environnement monde = Environnement();
 
     monde.run(3);
+
+
+    for(double a=20.0;a<31;a=a+10.0){
+      for(int t=2410;t<3011;t=t+300){
+        Environnement univers(a,t,0.1,0.02);
+        univers.run(5000);
+      }
+    }
 
     return 0;
   

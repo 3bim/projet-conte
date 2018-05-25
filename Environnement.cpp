@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -19,7 +20,6 @@ Environnement::Environnement(){
 	H_ = 32; 
 	T_ = 500;
 	D_ = 0.1;
-	P_mut_ = 0;
   P_death_ = 0.02;
 	grille  = new Case* [H_];
 	for(int i=0; i<H_;i++){
@@ -29,13 +29,12 @@ Environnement::Environnement(){
 	filling();
 }
 
-Environnement::Environnement(double Ainit,int T,float D, float P_mut, float P_death){
+Environnement::Environnement(double Ainit,int T,float D, float P_death){
 	Ainit_ = Ainit;
 	W_ = 32; 
 	H_ = 32; 
 	T_ = T;
 	D_ = D;
-	P_mut_=P_mut;
   P_death_ =P_death;
 	grille = new Case* [H_];
 	for(int i=0; i<H_;i++){
@@ -88,6 +87,7 @@ void Environnement::filling(){
   float compA=(H_*W_)/2;
 	float compB=(H_*W_)/2;
 	char remaining = ' ';
+  //srand(time(NULL));
 	for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
 			if(compA>0 && compB>0){
@@ -181,6 +181,7 @@ void Environnement::diffusion(){
 vector<vector<int>> Environnement::death(){
   vector<int> vec;
   vector<vector<int>> liste = {};
+  //srand(time(NULL));
   for (int i=0; i<H_; i++){
 		for(int j=0; j<W_; j++){
       vec = {};
@@ -252,10 +253,10 @@ void Environnement::metabolism(){
 void Environnement::run(int t){
   vector<vector<int>> vec;
 	for (int i=0; i<t; i++){
-    if(i%(T_/10) == 0){
-	    if(i%(T_) == 0){
-			  reset();
-		  }
+ 	  if(i%(T_) == 0){
+			reset();
+		}
+    if(i%(50) == 0){
     montre_moi();
     }
 		diffusion();
