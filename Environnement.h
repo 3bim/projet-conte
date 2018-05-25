@@ -11,7 +11,7 @@ public :
 //Constructors 
 
 Environnement();
-Environnement(double Ainit,int T,float D,float P_mut,float P_death);
+Environnement(double Ainit,int T,float D,float P_death);
 
 //Destructors
 
