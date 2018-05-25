@@ -19,7 +19,7 @@ class Case {
 	~Case();
 	
 	//Getters :
-	map<char,double> metabolites();
+	inline map<char,double> metabolites();
 	
 	//Setters :
 	void set_bacterie(char c);
@@ -41,4 +41,9 @@ class Case {
 	map<char,double> metabolites_;
 	 
 };
+
+inline map<char,double> Case::metabolites(){
+	return metabolites_;
+}
+
 #endif
