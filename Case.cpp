@@ -38,11 +38,11 @@ Case::~Case(){
 }
 
 
-//Getters :
+//Getters : une seule ligne donc dans Case.h inline
 
-map<char,double> Case::metabolites(){
-	return metabolites_;
-}
+//map<char,double> Case::metabolites(){
+	//return metabolites_;
+//}
 
 
 //Setters :
