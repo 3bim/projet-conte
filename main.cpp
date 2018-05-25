@@ -48,7 +48,7 @@ int main(){
 
     Environnement monde = Environnement();
 
-    monde.run(5000);
+    monde.run(3);
 
     return 0;
   
