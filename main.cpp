@@ -9,49 +9,14 @@
 using namespace std;
 
 int main(){
-    /*Bacterie* bac=new BacterieA();
 
-    Bacterie* bac2=new BacterieB(1.0,2.0,3.0);
- 
-    map<char,double> phen=bac->phenotype();
-    for(map<char,double>::iterator it=phen.begin();it!=phen.end();++it) cout << it->first << " ; " << it->second << endl;
-    cout << bac->fitness() << endl;
+    //Environnement monde = Environnement();
 
-    phen=bac2->phenotype();
-    for(map<char,double>::iterator it=phen.begin();it!=phen.end();++it) cout << it->first << " ; " << it->second << endl;
-    cout << bac2->fitness() << endl;
-
-    map<char,double> meta = {{'A',1.},{'B',2.},{'C',3.}};
-    bac2->metabolisme(&meta);
-    for(map<char,double>::iterator it=meta.begin();it!=meta.end();++it) cout << it->first << " ; " << it->second << endl;
-
-    phen=bac2->phenotype();
-    for(map<char,double>::iterator it=phen.begin();it!=phen.end();++it) cout << it->first << " ; " << it->second << endl;
-    cout << bac2->fitness() << endl;
+    //monde.run(5000);
 
 
-    Bacterie* bac3 = bac2->reproduire();
-    phen=bac3->phenotype();
-    for(map<char,double>::iterator it=phen.begin();it!=phen.end();++it) cout << it->first << " ; " << it->second << endl;
-    cout << bac3->fitness() << endl;
-
-    for(int i=0;i<10;++i) {
-        bac3 = bac2->reproduire();
-        cout << bac3->fitness() << endl;
-        delete bac3;
-    }
-
-		cout << bac->type() << endl << bac2->type() <<endl ;
-		delete bac;
-		delete bac2;*/
-
-    Environnement monde = Environnement();
-
-    monde.run(5000);
-
-
-    for(double a=20.0;a<31;a=a+10.0){
-      for(int t=2410;t<3011;t=t+300){
+    for(double a=1.0;a<52;a=a+10.0){
+      for(int t=10;t<311;t=t+50){
         Environnement univers(a,t,0.1,0.02);
         univers.run(5000);
       }
