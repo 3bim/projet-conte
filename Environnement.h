@@ -39,7 +39,6 @@ int W_;
 int H_;
 int T_ ;
 float D_;
-float P_mut_;
 float P_death_;
 Case** grille;
 };
