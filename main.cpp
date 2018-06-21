@@ -47,11 +47,11 @@ int main(){
 
     Environnement monde = Environnement();
 
-    monde.run(3);
+    //monde.run(3);
 
 
-    for(double a=20.0;a<31;a=a+10.0){
-      for(int t=2410;t<3011;t=t+300){
+    for(double a=1.00;a<52;a=a+10.0){
+      for(int t=10;t<1511;t=t+300){
         Environnement univers(a,t,0.1,0.02);
         univers.run(5000);
       }

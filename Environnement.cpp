@@ -257,7 +257,6 @@ void Environnement::run(int t){
 			reset();
 		}
     if(i%(50) == 0){
-    montre_moi();
     }
 		diffusion();
 		vec=death();
