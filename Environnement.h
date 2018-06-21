@@ -1,5 +1,5 @@
 #ifndef ENVIRONNEMENT_H
-#define ENVIRONNEMENT_H 
+#define ENVIRONNEMENT_H
 
 #include "Case.h"
 #include <vector>
@@ -8,7 +8,7 @@ class Environnement {
 
 public :
 
-//Constructors 
+//Constructors
 
 Environnement();
 Environnement(double Ainit,int T,float D,float P_death);
@@ -26,8 +26,8 @@ void montre_moi();
 void reset();
 void filling();
 void diffusion();
-vector<vector<int>> death();
-void division(vector<vector<int>>);
+vector<vector<int> > death();
+void division(vector<vector<int> >);
 void metabolism();
 void run(int t);
 
@@ -44,4 +44,4 @@ float P_death_;
 Case** grille;
 };
 
-#endif 
+#endif

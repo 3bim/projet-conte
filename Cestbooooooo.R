@@ -1,3 +1,5 @@
+rm(list=ls())
+
 #Lecture de la table
 d=read.table("data.tab")
 d2=read.table("data2.tab")
@@ -172,7 +174,5 @@ plot(x,d501810$V1,ylim=c(0,1000),main="a = 50 T = 1810",xlab="temps",ylab="Nombr
 lines(x,d501810$V2,col="green")
 plot(x,d502110$V1,ylim=c(0,1000),main="a = 50 T = 2110",xlab="temps",ylab="Nombre de bactéries",type="l",col="red")
 lines(x,d502110$V2,col="green")
-
-
 
 #Analyse de ces tests
